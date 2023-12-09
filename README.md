@@ -91,3 +91,14 @@ pred = torch.argmax(y, dim=1)
 ```
 
 for convience, the `U-Net v2` model file has been copied to `./unet_v2/UNet_v2.py`
+
+### 4. Citation
+
+```
+@article{peng2023u,
+  title={U-Net v2: Rethinking the Skip Connections of U-Net for Medical Image Segmentation},
+  author={Peng, Yaopeng and Sonka, Milan and Chen, Danny Z},
+  journal={arXiv preprint arXiv:2311.17791},
+  year={2023}
+}
+```
