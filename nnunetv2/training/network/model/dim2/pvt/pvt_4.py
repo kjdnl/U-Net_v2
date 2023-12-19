@@ -69,7 +69,7 @@ class AttentionLayer(nn.Module):
         super().__init__()
 
         self.convs = nn.ModuleList([nn.Conv2d(32, 32, kernel_size=3,
-        stride = 1, padding = 1)] * 4)
+        stride = 1, padding = 1) for _ in range(4)])
 
     def forward(self, xs, anchor):
         ans = torch.ones_like(anchor)
@@ -90,14 +90,14 @@ class AttentionLayer_1(nn.Module):
     def __init__(self):
         super().__init__()
         self.k = nn.ModuleList([
-            nn.Linear(32, 32)] * 4)
+            nn.Linear(32, 32) for _ in range(4)])
 
         self.v = nn.ModuleList([
-            nn.Linear(32, 32)] * 4)
+            nn.Linear(32, 32) for _ in range(4)])
 
-        self.proj = nn.ModuleList([nn.Linear(32, 32)] * 4)
+        self.proj = nn.ModuleList([nn.Linear(32, 32) for _ in range(4)])
 
-        # self.mlp = nn.ModuleList([nn.Identity()] * 4)
+        # self.mlp = nn.ModuleList([nn.Identity() for _ in range(4)])
         # self.k1 = nn.Linear(32, 16)
         # self.v1 = nn.Linear(32, 16)
         #
@@ -111,7 +111,7 @@ class AttentionLayer_1(nn.Module):
 
         self.conv = nn.Conv2d(32, 32, 1, 1)
 
-        self.norm = nn.ModuleList([nn.LayerNorm(32)] * 4)
+        self.norm = nn.ModuleList([nn.LayerNorm(32) for _ in range(4)])
 
     def forward(self, xs, anchor):
         anchor_copy = anchor
@@ -194,7 +194,7 @@ class PVTNetwork_4(nn.Module):
         self.attention_4 = AttentionLayer()
 
         self.seg_outs = nn.ModuleList([
-            nn.Conv2d(32, n_classes, 1, 1)] * 4)
+            nn.Conv2d(32, n_classes, 1, 1) for _ in range(4)])
 
         self.deconv2 = nn.ConvTranspose2d(32, 32, kernel_size=4, stride=2, padding=1,
                                           bias=False)
