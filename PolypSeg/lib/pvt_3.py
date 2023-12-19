@@ -188,13 +188,13 @@ class PVTNetwork(nn.Module):
         y = self.deconv4(y) + f11  # 176
         out2 = self.seg_outs[1](y)  # 176
 
-        # if self.deep_supervision:
-        #     return F.interpolate(out1, scale_factor=8, mode='bilinear'), \
-        #         F.interpolate(out2, scale_factor=4, mode='bilinear')
-        # else:
-        #     return F.interpolate(out2, scale_factor=4, mode='bilinear')
+        if self.deep_supervision:
+            return F.interpolate(out1, scale_factor=8, mode='bilinear'), \
+                F.interpolate(out2, scale_factor=4, mode='bilinear')
+        else:
+            return F.interpolate(out2, scale_factor=4, mode='bilinear')
 
-        return F.interpolate(out2, scale_factor=4, mode='bilinear')
+        # return F.interpolate(out2, scale_factor=4, mode='bilinear')
 
 
 if __name__ == "__main__":
